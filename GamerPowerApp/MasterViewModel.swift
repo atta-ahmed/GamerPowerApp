@@ -10,12 +10,13 @@ import Foundation
 
 @MainActor
 class MasterViewModel: ObservableObject {
-    @Published var giveaways: [GiveAwayModel] = []
+    @Published var giveaways: [GiveawayModel] = []
     @Published var errorMessage: String?
-    @Published var epicGamesGiveaways: [GiveAwayModel] = []
+    @Published var epicGamesGiveaways: [GiveawayModel] = []
     @Published var searchText: String = ""
+    @Published var selectedPlatform: String? = "all"
     
-    var uniquePlatforms: [String] = []
+    var uniquePlatforms: [String] = ["all", "pc", "steam", "ios", "android"]
     
     private let apiService: APIServiceProtocol
     
@@ -30,16 +31,13 @@ class MasterViewModel: ObservableObject {
             do {
                 let target: GiveawayAPI = platform != nil ? .giveawaysByPlatform(platform: platform!) : .allGiveaways
                 
-                let data: [GiveAwayModel] = try await apiService.request(target)
+                let data: [GiveawayModel] = try await apiService.request(target)
                 print("=======> self.data = ",data.first?.title )
 
                 
                 await MainActor.run {
                     self.giveaways = data
                     print("=======> self.giveaways = ",self.giveaways.count )
-                    if uniquePlatforms.isEmpty {
-                        extractPlatforms()
-                    }
                 }
             } catch {
                 await MainActor.run {
@@ -49,7 +47,7 @@ class MasterViewModel: ObservableObject {
         }
     }
     
-    var filteredGiveaways: [GiveAwayModel] {
+    var filteredGiveaways: [GiveawayModel] {
         if searchText.isEmpty {
             return giveaways  // Return all giveaways if search is empty
         } else {
@@ -57,18 +55,19 @@ class MasterViewModel: ObservableObject {
         }
     }
     
-    private func extractPlatforms() {
-        let allPlatforms = giveaways.compactMap { $0.platforms?.components(separatedBy: ", ") }
-
-        uniquePlatforms = Array(Set(allPlatforms.flatMap { $0 })).sorted().map { $0.lowercased() }
-
-        print("platforms", uniquePlatforms)
+    func selectPlatform(_ platform: String) {
+        if selectedPlatform == platform {
+            selectedPlatform = nil // Deselect if already selected
+        } else {
+            selectedPlatform = platform
+        }
     }
+
+//    private func extractPlatforms() {
+//        let allPlatforms = giveaways.compactMap { $0.platforms?.components(separatedBy: ", ") }
+//        let extractedPlatforms = Array(Set(allPlatforms.flatMap { $0 })).sorted().map { $0.lowercased() }
+//        uniquePlatforms.append(contentsOf: extractedPlatforms)
+//        print("platforms", uniquePlatforms)
+//    }
     
-}
-
-
-
-struct GiveawayResponse: Decodable {
-    let giveaways: [GiveAwayModel] // Wraps the array
 }

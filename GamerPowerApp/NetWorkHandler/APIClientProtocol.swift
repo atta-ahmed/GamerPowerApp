@@ -22,37 +22,56 @@ class APIClient: APIClientProtocol {
     }
     
     func request<T: Decodable, U: TargetType>(_ target: U) async throws -> T {
-        do {
-            let endpoint = provider.endpoint(MultiTarget(target))
-            let url = endpoint.url
-            let method = HTTPMethod(rawValue: endpoint.method.rawValue)
-            let headers = HTTPHeaders(endpoint.httpHeaderFields ?? [:])
-
-            print("Final Request URL:", endpoint.url)
-
-            // Validate the URL
-            guard let validURL = URL(string: url) else {
-                throw APIError.invalidURL
+        return try await withCheckedThrowingContinuation { continuation in
+            provider.request(MultiTarget(target)) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                        continuation.resume(returning: decodedData)
+                    } catch {
+                        continuation.resume(throwing: APIError.decodingFailure(error))
+                    }
+                case .failure(let moyaError):
+                    continuation.resume(throwing: APIError.networkFailure(moyaError))
+                }
             }
-
-            // Make the Request
-            let data = try await AF.request(validURL, method: method, headers: headers)
-                .validate()
-                .serializingData()
-                .value
-
-            // Decode the Data
-            do {
-                return try JSONDecoder().decode(T.self, from: data)
-            } catch {
-                throw APIError.decodingFailure(error)
-            }
-        } catch let afError as AFError {
-            throw APIError.networkFailure(afError)
-        } catch {
-            throw APIError.unknown
         }
     }
+
+    
+//    func request<T: Decodable, U: TargetType>(_ target: U) async throws -> T {
+//        do {
+//            let endpoint = provider.endpoint(MultiTarget(target))
+//            let url = endpoint.url
+//            let method = HTTPMethod(rawValue: endpoint.method.rawValue)
+//            let headers = HTTPHeaders(endpoint.httpHeaderFields ?? [:])
+//
+//            print("Final Request URL:", endpoint.url)
+//
+//            // Validate the URL
+//            guard let validURL = URL(string: url) else {
+//                throw APIError.invalidURL
+//            }
+//
+//            // Make the Request
+//            let data = try await AF.request(validURL, method: method, headers: headers)
+//                .validate()
+//                .serializingData()
+//                .value
+//
+//            // Decode the Data
+//            do {
+//                return try JSONDecoder().decode(T.self, from: data)
+//            } catch {
+//                throw APIError.decodingFailure(error)
+//            }
+//        } catch let afError as AFError {
+//            throw APIError.networkFailure(afError)
+//        } catch {
+//            throw APIError.unknown
+//        }
+//    }
 
 
 }

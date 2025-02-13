@@ -9,7 +9,11 @@ import Foundation
 
 import Foundation
 
-struct GiveAwayModel: Codable, Identifiable {
+struct GiveawayResponse: Decodable {
+    let giveaways: [GiveawayModel]
+}
+
+struct GiveawayModel: Codable, Identifiable {
     let id: Int
     let title: String
     let worth: String?

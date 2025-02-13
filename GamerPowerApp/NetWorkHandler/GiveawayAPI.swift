@@ -18,14 +18,7 @@ extension GiveawayAPI: TargetType {
     }
 
     var path: String {
-//        return "/giveaways"
-
-        switch self {
-        case .allGiveaways:
-            return "/giveaways"
-        case .giveawaysByPlatform(let platform):
-            return "/giveaways?platform=\(platform)"
-        }
+        return "/giveaways"
     }
 
     var method: Moya.Method {
@@ -33,14 +26,13 @@ extension GiveawayAPI: TargetType {
     }
 
     var task: Task {
-        return .requestPlain
-
-//        switch self {
-//        case .allGiveaways:
-//            return .requestPlain
-//        case .giveawaysByPlatform(let platform):
-//            return .requestParameters(parameters: ["platform": platform], encoding: URLEncoding.queryString)
-//        }
+        switch self {
+        case .allGiveaways:
+            return .requestPlain
+        case .giveawaysByPlatform(let platform):
+            let encodedPlatform = platform.replacingOccurrences(of: " ", with: "-")
+            return .requestParameters(parameters: ["platform": encodedPlatform], encoding: URLEncoding.queryString)
+        }
     }
     
     var headers: [String: String]? {

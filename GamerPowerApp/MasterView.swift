@@ -11,64 +11,77 @@ struct MasterView: View {
     @StateObject private var viewModel = MasterViewModel()
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                VStack(alignment: .leading) {
-                    Text("👋 Hello, User")
-                        .font(.headline)
-                    Text("Explore\nGames Giveaways")
-                        .font(.largeTitle.bold())
-                }
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading) {
+                        Text("👋 Hello, User")
+                            .font(.headline)
+                        Text("Explore\nGames Giveaways")
+                            .font(.largeTitle.bold())
+                    }
+                    
+                    // Search Bar
+                    TextField("Search Game by name", text: $viewModel.searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    // Filter Categories
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(viewModel.uniquePlatforms, id: \.self) { platform in
+                                Text(platform)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .foregroundColor(viewModel.selectedPlatform == platform ? .black : .gray)
+                                    .onTapGesture {
+                                        viewModel.selectPlatform(platform)
+                                        viewModel.fetchGiveaways(platform: platform)
+                                    }
+                            }
+                            
+                            Button(action: {
+                                // Handle "More" button action
+                            }) {
+                                Text("more")
+                                    .foregroundColor(.blue)
+                                    .underline()
+                            }
+                        }
+                    }
 
-                // Search Bar
-                TextField("Search Game by name", text: $viewModel.searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                // Filter Categories
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(viewModel.uniquePlatforms, id: \.self) { platform in
-                            Text(platform)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(Color.gray.opacity(0.2))
-                                .clipShape(Capsule())
-                                .onTapGesture {
-//                                    viewModel.selectedCategory = category
-                                    viewModel.fetchGiveaways(platform: platform) // Fetch new giveaways
-                                }
+                    
+                    // Epic Games Carousel
+                    if !viewModel.epicGamesGiveaways.isEmpty {
+                        
+                        CarouselView(items: viewModel.epicGamesGiveaways)
+                            .frame(height: 200)
+                            .padding(.vertical, 10)
+                    }
+                    
+                    // List of Giveaways
+                    ForEach(viewModel.filteredGiveaways, id: \.id) { giveaway in
+                        NavigationLink(destination: GiveawayDetailView(giveaway: giveaway)) {
+                            GiveawayCardView(giveaway: giveaway)
                         }
                     }
                 }
-
-                // Epic Games Carousel
-                if !viewModel.epicGamesGiveaways.isEmpty {
-                    CarouselView(items: viewModel.epicGamesGiveaways)
-                        .frame(height: 200)
-                        .padding(.vertical, 10)
-                }
-
-                // List of Giveaways
-                ForEach(viewModel.filteredGiveaways, id: \.id) { giveaway in
-                    GiveawayCardView(giveAway: giveaway)
-                }
             }
-        }
-        .padding()
-        .onAppear {
-            viewModel.fetchGiveaways()
+            .padding()
+            .onAppear {
+                viewModel.fetchGiveaways()
+            }
         }
     }
 }
 
 // Giveaway Item Card
 struct GiveawayCardView: View {
-    let giveAway: GiveAwayModel
+    let giveaway: GiveawayModel
 
     var body: some View {
         ZStack(alignment: .leading) {
             VStack() {
-                AsyncImage(url: URL(string: giveAway.image ?? "")) { image in
+                AsyncImage(url: URL(string: giveaway.image ?? "")) { image in
                     image
                         .resizable()
                         .cornerRadius(25)
@@ -86,7 +99,7 @@ struct GiveawayCardView: View {
                 HStack(alignment: .top) {
                     
                     //Title (Top Left)
-                    Text(giveAway.title)
+                    Text(giveaway.title)
                         .font(.headline)
                         .foregroundColor(.white)
                         .background(Color.black.opacity(0.7))
@@ -108,7 +121,7 @@ struct GiveawayCardView: View {
                 
                 Spacer()
                 
-                Text(giveAway.description ?? "")
+                Text(giveaway.description ?? "")
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .lineLimit(4)
@@ -125,7 +138,7 @@ struct GiveawayCardView: View {
 
 // Carousel View
 struct CarouselView: View {
-    let items: [GiveAwayModel]
+    let items: [GiveawayModel]
 
     var body: some View {
         TabView {
