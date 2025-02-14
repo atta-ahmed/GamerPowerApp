@@ -5,8 +5,6 @@
 //  Created by Atta ElAshmawy, Vodafone on 13/02/2025.
 //
 
-import SwiftUI
-
 import Foundation
 actor FavoriteManager {
     static let shared = FavoriteManager()

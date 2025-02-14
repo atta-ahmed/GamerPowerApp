@@ -11,7 +11,7 @@ import SwiftUI
 struct GamerPowerAppApp: App {
     var body: some Scene {
         WindowGroup {
-            MasterView()
+            GiveawayMasterView()
         }
     }
 }

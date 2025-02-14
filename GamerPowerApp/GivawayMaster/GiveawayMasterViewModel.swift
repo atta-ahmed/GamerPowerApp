@@ -9,7 +9,7 @@
 import Foundation
 
 @MainActor
-class MasterViewModel: ObservableObject {
+class GiveawayMasterViewModel: ObservableObject {
     @Published var giveaways: [GiveawayModel] = []
     @Published var errorMessage: String?
     @Published var epicGamesGiveaways: [GiveawayModel] = []
@@ -35,18 +35,22 @@ class MasterViewModel: ObservableObject {
     
     func fetchGiveaways(platform: String? = nil) {
         let apiService = self.apiService
-        
+
         Task {
             do {
-                let target: GiveawayAPI = platform != nil ? .giveawaysByPlatform(platform: platform!) : .allGiveaways
-                
-                let data: [GiveawayModel] = try await apiService.request(target)
-                print("=======> self.data = ",data.first?.title )
+                let target: GiveawayAPI
+                if let platform = platform?.lowercased(), platform != "all" {
+                    target = .giveawaysByPlatform(platform: platform)
+                } else {
+                    target = .allGiveaways
+                }
 
-                
+                let data: [GiveawayModel] = try await apiService.request(target)
+                print("=======> self.data = ", data.first?.title ?? "No data")
+
                 await MainActor.run {
                     self.giveaways = data
-                    print("=======> self.giveaways = ",self.giveaways.count )
+                    print("=======> self.giveaways = ", self.giveaways.count)
                 }
             } catch {
                 await MainActor.run {
@@ -55,6 +59,7 @@ class MasterViewModel: ObservableObject {
             }
         }
     }
+
     
     var filteredGiveaways: [GiveawayModel] {
         if searchText.isEmpty {

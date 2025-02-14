@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct MasterView: View {
-    @StateObject private var viewModel = MasterViewModel()
+struct GiveawayMasterView: View {
+    @StateObject private var viewModel = GiveawayMasterViewModel()
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
+                    // Headers
                     VStack(alignment: .leading) {
                         Text("👋 Hello, User")
                             .font(.headline)
@@ -24,7 +26,20 @@ struct MasterView: View {
                     // Search Bar
                     TextField("Search Game by name", text: $viewModel.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
+                        .overlay(
+                            HStack {
+                                Spacer()
+                                if !viewModel.searchText.isEmpty {
+                                    Button(action: { viewModel.searchText = "" }) {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding(.trailing, 8)
+                                }
+                            }
+                        )
+                        .submitLabel(.done)
+
                     // Filter Categories
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
@@ -34,6 +49,7 @@ struct MasterView: View {
                                     .padding(.vertical, 6)
                                     .foregroundColor(viewModel.selectedPlatform == platform ? .black : .gray)
                                     .onTapGesture {
+                                        if viewModel.selectedPlatform == platform  { return }
                                         viewModel.selectPlatform(platform)
                                         viewModel.fetchGiveaways(platform: platform)
                                     }
@@ -47,15 +63,6 @@ struct MasterView: View {
                                     .underline()
                             }
                         }
-                    }
-
-                    
-                    // Epic Games Carousel
-                    if !viewModel.epicGamesGiveaways.isEmpty {
-                        
-                        CarouselView(items: viewModel.epicGamesGiveaways)
-                            .frame(height: 200)
-                            .padding(.vertical, 10)
                     }
                     
                     // List of Giveaways
@@ -77,29 +84,23 @@ struct MasterView: View {
 // Giveaway Item Card
 struct GiveawayCardView: View {
     let giveaway: GiveawayModel
-    @ObservedObject var viewModel: MasterViewModel
+    @ObservedObject var viewModel: GiveawayMasterViewModel
 
     var body: some View {
         ZStack(alignment: .leading) {
             VStack() {
-                AsyncImage(url: URL(string: giveaway.image ?? "")) { image in
-                    image
-                        .resizable()
-                        .cornerRadius(25)
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
-                        .frame(height: UIScreen.main.bounds.height * 0.45)
-                        .cornerRadius(25)
-                }
+                KFImage(URL(string: giveaway.image ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 300)
+                    .cornerRadius(25)
+                    .clipped()
             }
-            .frame(width: UIScreen.main.bounds.width - 32, height: 300)
 
             VStack(alignment: .leading) {
                 
                 HStack(alignment: .top) {
                     
-                    //Title (Top Left)
                     Text(giveaway.title)
                         .font(.headline)
                         .foregroundColor(.white)
@@ -127,32 +128,12 @@ struct GiveawayCardView: View {
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .lineLimit(4)
-                    .background(Color.black.opacity(0.5))  // Add slight background for readability
+                    .background(Color.black.opacity(0.5))
                     .cornerRadius(8)
             }
             .padding()
         }
         .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .background(.yellow)
 
-    }
-}
-
-// Carousel View
-struct CarouselView: View {
-    let items: [GiveawayModel]
-
-    var body: some View {
-        TabView {
-            ForEach(items, id: \.id) { item in
-                AsyncImage(url: URL(string: item.image ?? ""))
-                    .scaledToFit()
-                    .frame(width: UIScreen.main.bounds.width - 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .rotationEffect(.degrees(-5))
-                    .animation(.easeInOut, value: item.id)
-            }
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }
 }
