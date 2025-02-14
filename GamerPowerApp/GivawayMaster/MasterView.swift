@@ -61,7 +61,7 @@ struct MasterView: View {
                     // List of Giveaways
                     ForEach(viewModel.filteredGiveaways, id: \.id) { giveaway in
                         NavigationLink(destination: GiveawayDetailView(giveaway: giveaway)) {
-                            GiveawayCardView(giveaway: giveaway)
+                            GiveawayCardView(giveaway: giveaway, viewModel: viewModel)
                         }
                     }
                 }
@@ -77,6 +77,7 @@ struct MasterView: View {
 // Giveaway Item Card
 struct GiveawayCardView: View {
     let giveaway: GiveawayModel
+    @ObservedObject var viewModel: MasterViewModel
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -108,11 +109,12 @@ struct GiveawayCardView: View {
                     Spacer()
                     
                       Button(action: {
-//                          isFavorite.toggle()
-//                          handleFavoriteAction()
+                          Task {
+                                 await viewModel.toggleFavorite(giveaway.id)
+                             }
                       }) {
-                          Image(systemName: true ? "heart.fill" : "heart")
-                              .foregroundColor(true ? .red : .white)
+                          Image(systemName: viewModel.isFave(giveaway.id) ? "heart.fill" : "heart")
+                              .foregroundColor(viewModel.isFave(giveaway.id) ? .red : .white)
                               .padding(10)
                               .background(Color.black.opacity(0.6))
                               .clipShape(Circle())

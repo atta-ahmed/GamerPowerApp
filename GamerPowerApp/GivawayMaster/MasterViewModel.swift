@@ -15,13 +15,22 @@ class MasterViewModel: ObservableObject {
     @Published var epicGamesGiveaways: [GiveawayModel] = []
     @Published var searchText: String = ""
     @Published var selectedPlatform: String? = "all"
-    
+    private let favoriteManager = FavoriteManager.shared
+    @Published private(set) var favoriteIDs: Set<String> = []
+
     var uniquePlatforms: [String] = ["all", "pc", "steam", "ios", "android"]
     
     private let apiService: APIServiceProtocol
     
+
+ 
+    
     init(apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
+        
+        Task {
+            await favoriteIDs = favoriteManager.getFavoriteIDs()
+        }
     }
     
     func fetchGiveaways(platform: String? = nil) {
@@ -62,6 +71,21 @@ class MasterViewModel: ObservableObject {
             selectedPlatform = platform
         }
     }
+    
+    // Update cached favorites
+     func loadFavorites() async {
+         favoriteIDs = await favoriteManager.getFavoriteIDs()
+     }
+     
+     func isFave(_ id: Int) -> Bool {
+         return favoriteIDs.contains("\(id)")
+     }
+     
+     // Toggle favorite status and update cached favorites
+     func toggleFavorite(_ id: Int) async {
+         await favoriteManager.toggleFavorite("\(id)")
+         favoriteIDs = await favoriteManager.getFavoriteIDs()
+     }
 
 //    private func extractPlatforms() {
 //        let allPlatforms = giveaways.compactMap { $0.platforms?.components(separatedBy: ", ") }
