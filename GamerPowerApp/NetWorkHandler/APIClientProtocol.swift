@@ -50,10 +50,10 @@ class APIClient: APIClientProtocol {
 
     // MARK: - Logging (For Debugging)
     private func logSuccess<T: Decodable>(request: URLRequest, data: T) {
-        print("✅ [SUCCESS] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+        print("✅ [SUCCESS APIClient] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
     }
 
     private func logError(request: URLRequest, error: Error) {
-        print("❌ [ERROR] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "") - \(error.localizedDescription)")
+        print("❌ [ERROR APIClient] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "") - \(error.localizedDescription)")
     }
 }
