@@ -10,6 +10,7 @@ import Kingfisher
 
 struct GiveawayMasterView: View {
     @StateObject private var viewModel = GiveawayMasterViewModel()
+    @State private var isShowingCategories = false
 
     var body: some View {
         NavigationView {
@@ -56,18 +57,21 @@ struct GiveawayMasterView: View {
                             }
                             
                             Button(action: {
-                                // Handle "More" button action
+                                isShowingCategories = true
                             }) {
                                 Text("more")
                                     .foregroundColor(.blue)
                                     .underline()
+                            }
+                            .sheet(isPresented: $isShowingCategories) {
+                                GiveawayCategoriesView(viewModel: viewModel)
                             }
                         }
                     }
                     
                     // List of Giveaways
                     ForEach(viewModel.filteredGiveaways, id: \.id) { giveaway in
-                        NavigationLink(destination: GiveawayDetailView(giveaway: giveaway)) {
+                        NavigationLink(destination: GiveawayDetailView(giveaway: giveaway, viewModel: viewModel)) {
                             GiveawayCardView(giveaway: giveaway, viewModel: viewModel)
                         }
                     }

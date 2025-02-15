@@ -7,7 +7,6 @@
 
 
 import Foundation
-
 @MainActor
 class GiveawayMasterViewModel: ObservableObject {
     @Published var giveaways: [GiveawayModel] = []
@@ -15,51 +14,53 @@ class GiveawayMasterViewModel: ObservableObject {
     @Published var epicGamesGiveaways: [GiveawayModel] = []
     @Published var searchText: String = ""
     @Published var selectedPlatform: String? = "all"
-    private let favoriteManager = FavoriteManager.shared
     @Published private(set) var favoriteIDs: Set<String> = []
 
     var uniquePlatforms: [String] = ["all", "pc", "steam", "ios", "android"]
-    
-    private let apiService: APIServiceProtocol
-    
+    private let favoriteManager = FavoriteManager.shared
+    private let repository: GiveawayRepositoryProtocol
 
- 
-    
-    init(apiService: APIServiceProtocol = APIService()) {
-        self.apiService = apiService
-        
-        Task {
-            await favoriteIDs = favoriteManager.getFavoriteIDs()
-        }
-    }
-    
+    init(repository: GiveawayRepositoryProtocol = GiveawayRepository()) {
+         self.repository = repository
+
+         // Run async initialization in a detached Task
+         Task {
+             let favorites = await favoriteManager.getFavoriteIDs()
+             await updateFavoriteIDs(favorites)
+         }
+     }
+
     func fetchGiveaways(platform: String? = nil) {
-        let apiService = self.apiService
-
+        let repository = self.repository
         Task {
             do {
-                let target: GiveawayAPI
-                if let platform = platform?.lowercased(), platform != "all" {
-                    target = .giveawaysByPlatform(platform: platform)
-                } else {
-                    target = .allGiveaways
+                var platformQuery: String? = platform?.lowercased()
+                if platformQuery == "all" {
+                    platformQuery = nil
                 }
 
-                let data: [GiveawayModel] = try await apiService.request(target)
-                print("=======> self.data = ", data.first?.title ?? "No data")
-
-                await MainActor.run {
-                    self.giveaways = data
-                    print("=======> self.giveaways = ", self.giveaways.count)
-                }
+                let data = try await repository.fetchGiveaways(platform: platformQuery)
+                await updateGiveaways(data)
             } catch {
-                await MainActor.run {
-                    self.errorMessage = error.localizedDescription
-                }
+                await updateError(error.localizedDescription)
             }
         }
     }
 
+    @MainActor
+    private func updateGiveaways(_ data: [GiveawayModel]) async {
+        self.giveaways = data
+    }
+
+    @MainActor
+    private func updateError(_ message: String) async {
+        self.errorMessage = message
+    }
+
+    @MainActor
+    private func updateFavoriteIDs(_ ids: Set<String>) async {
+        self.favoriteIDs = ids
+    }
     
     var filteredGiveaways: [GiveawayModel] {
         if searchText.isEmpty {
@@ -91,12 +92,4 @@ class GiveawayMasterViewModel: ObservableObject {
          await favoriteManager.toggleFavorite("\(id)")
          favoriteIDs = await favoriteManager.getFavoriteIDs()
      }
-
-//    private func extractPlatforms() {
-//        let allPlatforms = giveaways.compactMap { $0.platforms?.components(separatedBy: ", ") }
-//        let extractedPlatforms = Array(Set(allPlatforms.flatMap { $0 })).sorted().map { $0.lowercased() }
-//        uniquePlatforms.append(contentsOf: extractedPlatforms)
-//        print("platforms", uniquePlatforms)
-//    }
-    
 }
