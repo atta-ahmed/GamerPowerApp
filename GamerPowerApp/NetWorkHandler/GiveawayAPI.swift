@@ -9,7 +9,7 @@ import Moya
 
 enum GiveawayAPI {
     case allGiveaways
-    case giveawaysByPlatform(platform: String)
+    case giveawaysByPlatform(platform: String?)
 }
 
 extension GiveawayAPI: TargetType {
@@ -30,8 +30,7 @@ extension GiveawayAPI: TargetType {
         case .allGiveaways:
             return .requestPlain
         case .giveawaysByPlatform(let platform):
-            let encodedPlatform = platform.replacingOccurrences(of: " ", with: "-")
-            return .requestParameters(parameters: ["platform": encodedPlatform], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["platform": platform ?? ""], encoding: URLEncoding.queryString)
         }
     }
     

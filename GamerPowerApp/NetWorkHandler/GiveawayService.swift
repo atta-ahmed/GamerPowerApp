@@ -10,8 +10,7 @@ import Moya
 
 protocol GiveawayServiceProtocol {
     // fetch from api
-    func fetch<T: Decodable>(_ target: GiveawayAPI) async throws -> T
-
+    func fetch(target: GiveawayAPI) async throws -> [GiveawayModel]
 }
 
 
@@ -25,9 +24,29 @@ class GiveawayRemoteService: GiveawayServiceProtocol  {
         self.apiClient = apiClient
     }
     
-    func fetch<T: Decodable>(_ target: GiveawayAPI) async throws -> T {
-        return try await apiClient.request(target)
+    func fetch(target: GiveawayAPI) async throws -> [GiveawayModel] {
+        let request = try buildRequest(for: target)
+        return try await apiClient.request(request)
+    }
+
+    private func buildRequest(for target: TargetType) throws -> URLRequest {
+        let url = target.baseURL.appendingPathComponent(target.path)
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+
+        if case let .requestParameters(parameters, encoding) = target.task,
+           encoding is URLEncoding {
+            urlComponents?.queryItems = parameters.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+        }
+
+        guard let finalURL = urlComponents?.url else {
+            throw APIError.invalidURL
+        }
+
+        var request = URLRequest(url: finalURL)
+        request.httpMethod = target.method.rawValue
+        request.allHTTPHeaderFields = target.headers
+        return request
     }
     
+    
 }
-

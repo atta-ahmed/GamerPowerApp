@@ -18,7 +18,7 @@ class GiveawayRepository: GiveawayRepositoryProtocol {
     }
 
     func fetchGiveaways(platform: String? = nil) async throws -> [GiveawayModel] {
-        let target: GiveawayAPI = platform != nil ? .giveawaysByPlatform(platform: platform!) : .allGiveaways
-        return try await givawayService.fetch(target)
+        let target: GiveawayAPI = platform != nil ? .giveawaysByPlatform(platform: platform) : .allGiveaways
+        return try await givawayService.fetch(target: target)
     }
 }

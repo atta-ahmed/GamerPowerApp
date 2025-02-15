@@ -39,5 +39,24 @@ struct GiveawayModel: Codable, Identifiable {
         case gamerpowerURL = "gamerpower_url"
         case openGiveaway = "open_giveaway"
     }
+    
+    init(id: Int, title: String, worth: String? = nil, thumbnail: String? = nil, image: String? = nil, description: String? = nil, instructions: String? = nil, openGiveawayURL: String? = nil, publishedDate: String? = nil, type: String? = nil, platforms: String? = nil, endDate: String? = nil, users: Int? = nil, status: String? = nil, gamerpowerURL: String? = nil, openGiveaway: String? = nil) {
+        self.id = id
+        self.title = title
+        self.worth = worth
+        self.thumbnail = thumbnail
+        self.image = image
+        self.description = description
+        self.instructions = instructions
+        self.openGiveawayURL = openGiveawayURL
+        self.publishedDate = publishedDate
+        self.type = type
+        self.platforms = platforms
+        self.endDate = endDate
+        self.users = users
+        self.status = status
+        self.gamerpowerURL = gamerpowerURL
+        self.openGiveaway = openGiveaway
+    }
 }
 

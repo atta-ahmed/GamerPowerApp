@@ -34,12 +34,14 @@ class GiveawayMasterViewModel: ObservableObject {
         let repository = self.repository
         Task {
             do {
-                var platformQuery: String? = platform?.lowercased()
-                if platformQuery == "all" {
-                    platformQuery = nil
+                var encodedPlatform: String?
+                if platform == "all" {
+                    encodedPlatform = nil
+                } else {
+                    encodedPlatform = platform?.replacingOccurrences(of: " ", with: "-")
                 }
 
-                let data = try await repository.fetchGiveaways(platform: platformQuery)
+                let data = try await repository.fetchGiveaways(platform: encodedPlatform)
                 await updateGiveaways(data)
             } catch {
                 await updateError(error.localizedDescription)
