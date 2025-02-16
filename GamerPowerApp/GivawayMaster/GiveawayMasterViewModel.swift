@@ -23,8 +23,7 @@ class GiveawayMasterViewModel: ObservableObject {
     init(repository: GiveawayRepositoryProtocol = GiveawayRepository()) {
          self.repository = repository
 
-         // Run async initialization in a detached Task
-         Task {
+        Task {
              let favorites = await favoriteManager.getFavoriteIDs()
              await updateFavoriteIDs(favorites)
          }
@@ -85,7 +84,7 @@ class GiveawayMasterViewModel: ObservableObject {
          favoriteIDs = await favoriteManager.getFavoriteIDs()
      }
      
-     func isFave(_ id: Int) -> Bool {
+     func Favorites(_ id: Int) -> Bool {
          return favoriteIDs.contains("\(id)")
      }
      

@@ -32,6 +32,7 @@ class GiveawayRemoteService: GiveawayServiceProtocol {
         }
     }
 
+    // Map moya request to URLRequest Request
     private func buildRequest(for target: TargetType) throws -> URLRequest {
         guard var urlComponents = URLComponents(
             url: target.baseURL.appendingPathComponent(target.path),

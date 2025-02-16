@@ -7,9 +7,7 @@
 
 import Foundation
 
-import Foundation
-
-struct GiveawayResponse: Decodable {
+struct GiveawayResponse: Codable {
     let giveaways: [GiveawayModel]
 }
 
