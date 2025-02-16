@@ -37,7 +37,10 @@ struct GiveawayModel: Codable, Identifiable {
     let status: String?
     let gamerpowerURL: String?
     let openGiveaway: String?
-
+    var platformArray: [String]? {
+        platforms?.components(separatedBy: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id, title, worth, thumbnail, image, description, instructions, type, platforms, users, status
         case openGiveawayURL = "open_giveaway_url"

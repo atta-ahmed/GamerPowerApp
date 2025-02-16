@@ -11,7 +11,6 @@ import Foundation
 class GiveawayMasterViewModel: ObservableObject {
     @Published var giveaways: [GiveawayModel] = []
     @Published var errorMessage: String?
-    @Published var epicGamesGiveaways: [GiveawayModel] = []
     @Published var searchText: String = ""
     @Published var selectedPlatform: Platform? = .all
     @Published private(set) var favoriteIDs: Set<String> = []
@@ -84,4 +83,16 @@ class GiveawayMasterViewModel: ObservableObject {
          await favoriteManager.toggleFavorite("\(id)")
          favoriteIDs = await favoriteManager.getFavoriteIDs()
      }
+    
+    // Group giveaways by platforms
+    func groupGiveawaysByPlatform() -> [String: [GiveawayModel]] {
+        var groupedGiveaways: [String: [GiveawayModel]] = [:]
+
+        for giveaway in giveaways {
+            for platform in giveaway.platformArray ?? [] {
+                groupedGiveaways[platform, default: []].append(giveaway)
+            }
+        }
+        return groupedGiveaways
+    }
 }

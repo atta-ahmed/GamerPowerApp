@@ -56,7 +56,6 @@ class GiveawayMasterViewModelTests: XCTestCase {
         mockRepository.result = .failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Network error"]))
 
         // When
-        // When
         let expectation = expectation(description: "Wait for giveaways to load")
 
         // When
@@ -108,19 +107,19 @@ class GiveawayMasterViewModelTests: XCTestCase {
 
     @MainActor func testSelectPlatform() async {
         // Given
-        XCTAssertEqual(viewModel.selectedPlatform, "all")
+        XCTAssertEqual(viewModel.selectedPlatform, Platform.all)
 
         // When
-        viewModel.selectPlatform("pc")
+        viewModel.selectPlatform(Platform.pc)
 
         // Then
-        XCTAssertEqual(viewModel.selectedPlatform, "pc")
+        XCTAssertEqual(viewModel.selectedPlatform, Platform.pc)
 
         // When selecting the same platform again
-        viewModel.selectPlatform("pc")
+        viewModel.selectPlatform(Platform.pc)
 
-        // Then it should be deselected
-        XCTAssertNil(viewModel.selectedPlatform)
+        // Then it should be same
+        XCTAssertEqual(viewModel.selectedPlatform, Platform.pc)
     }
 }
 
@@ -128,7 +127,7 @@ class GiveawayMasterViewModelTests: XCTestCase {
 class MockGiveawayRepository: GiveawayRepositoryProtocol {
     var result: Result<[GiveawayModel], Error> = .success([])
 
-    func fetchGiveaways(platform: String?) async throws -> [GiveawayModel] {
+    func fetchGiveaways(platform: Platform?) async throws -> [GiveawayModel] {
         switch result {
         case .success(let data):
             return data

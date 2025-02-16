@@ -49,7 +49,11 @@ struct GiveawayMasterView: View {
     // Extracted Search Bar View
     private var searchBarView: some View {
         TextField("Search Game by name", text: $viewModel.searchText)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(8)
+            .background(Color.gray.opacity(0.2)) // Light gray background
+            .cornerRadius(8) // Rounded corners
+            .foregroundColor(.primary) // Ensure text is visible on gray background
+            
             .overlay(
                 HStack {
                     Spacer()

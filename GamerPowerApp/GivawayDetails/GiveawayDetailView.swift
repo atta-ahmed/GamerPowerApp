@@ -18,26 +18,25 @@ struct GiveawayDetailView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 // Image Section with Overlays
-                    ZStack {
-                        VStack() {
-                        KFImage(URL(string: giveaway.image ?? ""))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 300)
-                            .clipped()
-                            .overlay(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [.black.opacity(0.7), .clear]),
-                                    startPoint: .bottom,
-                                    endPoint: .top
-                                )
+                ZStack {
+                    // Giveaway Image with Overlay
+                    KFImage(URL(string: giveaway.image ?? ""))
+                        .resizable()
+                        .frame(maxWidth: .infinity) // Ensure it fills the screen
+                        .frame(height: 300)
+                        .clipped()
+                        .overlay(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.black.opacity(0.7), .clear]),
+                                startPoint: .bottom,
+                                endPoint: .top
                             )
-                    }
-                    
-                        VStack(alignment: .leading) {
+                        )
+
+                    VStack {
                         // **Top Controls (Back & Favorite)**
                         HStack {
-                            // Back Button (Left)
+                            // Back Button
                             Button(action: {
                                 presentationMode.wrappedValue.dismiss()
                             }) {
@@ -48,9 +47,9 @@ struct GiveawayDetailView: View {
                                     .clipShape(Circle())
                             }
                             
-//                            Spacer()
-                            
-                            // Favorite Button (Right)
+                            Spacer()
+
+                            // Favorite Button
                             Button(action: {
                                 Task {
                                     await viewModel.toggleFavorite(giveaway.id)
@@ -63,10 +62,11 @@ struct GiveawayDetailView: View {
                                     .clipShape(Circle())
                             }
                         }
-                        .background(.red)
+                        .padding()
                         
+                        Spacer() // This pushes the bottom section down
+
                         // **Bottom Section (Title & "Get it" Button)**
-//                        Spacer()
                         HStack {
                             Text(giveaway.title)
                                 .font(.title2)
@@ -74,9 +74,9 @@ struct GiveawayDetailView: View {
                                 .foregroundColor(.white)
                                 .lineLimit(2)
                                 .shadow(radius: 2)
-                            
+
                             Spacer()
-                            
+
                             if let urlString = giveaway.openGiveawayURL, let url = URL(string: urlString) {
                                 Link(destination: url) {
                                     Text("Get it")
@@ -90,20 +90,25 @@ struct GiveawayDetailView: View {
                                 }
                             }
                         }
-//                        .padding()
-                        .background(.yellow)
+                        .frame(maxWidth: .infinity)
+                        .padding()
                     }
-                    .background(.green)
-
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 // Giveaway Details
                 VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        GiveawayInfoView(icon: "dollarsign.circle", text: "N/A")
-                        GiveawayInfoView(icon: "person.2", text: "\(giveaway.users ?? 0)")
-                        GiveawayInfoView(icon: "gamecontroller", text: giveaway.type ?? "Unknown")
+                    HStack(alignment: .center) {
+
+                        GiveawayInfoView(icon: "dollarsign.circle.fill", text: "N/A")
+                        Divider()
+
+                        GiveawayInfoView(icon: "person.2.fill", text: "\(giveaway.users ?? 0)")
+                        Divider()
+
+                        GiveawayInfoView(icon: "gamecontroller.fill", text: giveaway.type ?? "Unknown")
                     }
-                    
+                    .frame(maxWidth: .infinity) // Make HStack expand to full width
+
                     Divider()
                     
                     Text("Platforms")
@@ -121,27 +126,10 @@ struct GiveawayDetailView: View {
                     Text(giveaway.description ?? "No description available")
                         .font(.body)
                 }
-                .padding()
             }
         }
+        .padding(30)
+
         .navigationBarHidden(true) // Hide default navigation bar
-    }
-}
-
-
-struct GiveawayInfoView: View {
-    let icon: String
-    let text: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .foregroundColor(.black)
-            Text(text)
-                .font(.subheadline)
-        }
-        .padding(8)
-        .background(Color.gray.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

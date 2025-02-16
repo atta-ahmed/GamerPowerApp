@@ -25,7 +25,7 @@ class GiveawayRemoteServiceTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFetch_Success() async throws {
+    func testFetchSuccess() async throws {
         // Given: Mock API response data
         let mockJSON = """
         [
@@ -45,9 +45,9 @@ class GiveawayRemoteServiceTests: XCTestCase {
         XCTAssertEqual(giveaways[1].platforms, "PS5")
     }
 
-    func testFetch_Failure() async {
+    func testFetchFailure() async {
         // Given: Mock API failure response
-        mockAPIClient.mockResult = .failure(APIError.networkError(NSError(domain: "", code: -1009, userInfo: nil)))
+        mockAPIClient.mockResult = .failure(APIError.networkError(NSError(domain: "", code: -1, userInfo: nil)))
 
         do {
             // When: Fetching giveaways

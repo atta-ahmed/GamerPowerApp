@@ -26,15 +26,10 @@ struct PlatformFilterView: View {
                         }
                 }
 
-                Button(action: {
-                    isShowingCategories = true
-                }) {
-                    Text("more")
+                NavigationLink(destination: GiveawayCategoriesView(groupedGiveaways: viewModel.groupGiveawaysByPlatform(), topGiveaways: viewModel.giveaways)) {
+                    Text("More")
                         .foregroundColor(.blue)
                         .underline()
-                }
-                .sheet(isPresented: $isShowingCategories) {
-                    GiveawayCategoriesView(viewModel: viewModel)
                 }
             }
         }
