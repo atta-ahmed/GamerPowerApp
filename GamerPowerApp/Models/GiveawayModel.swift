@@ -7,6 +7,15 @@
 
 import Foundation
 
+
+enum Platform: String, CaseIterable, Hashable {
+    case all
+    case pc
+    case steam
+    case ios
+    case android
+}
+
 struct GiveawayResponse: Codable {
     let giveaways: [GiveawayModel]
 }

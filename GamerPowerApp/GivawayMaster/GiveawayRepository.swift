@@ -7,7 +7,7 @@
 
 
 protocol GiveawayRepositoryProtocol {
-    func fetchGiveaways(platform: String?) async throws -> [GiveawayModel]
+    func fetchGiveaways(platform: Platform?) async throws -> [GiveawayModel]
 }
 
 class GiveawayRepository: GiveawayRepositoryProtocol {
@@ -17,8 +17,11 @@ class GiveawayRepository: GiveawayRepositoryProtocol {
         self.givawayService = givawayService
     }
 
-    func fetchGiveaways(platform: String? = nil) async throws -> [GiveawayModel] {
-        let target: GiveawayAPI = platform != nil ? .giveawaysByPlatform(platform: platform) : .allGiveaways
+    func fetchGiveaways(platform: Platform? = nil) async throws -> [GiveawayModel] {
+        let target: GiveawayAPI = (platform == nil || platform == .all)
+            ? .allGiveaways
+            : .giveawaysByPlatform(platform: platform?.rawValue ?? "all")
+
         return try await givawayService.fetch(target: target)
     }
 }

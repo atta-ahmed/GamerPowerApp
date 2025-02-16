@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct GiveawayCategoriesView: View {
     @ObservedObject var viewModel: GiveawayMasterViewModel
     @Environment(\.presentationMode) var presentationMode

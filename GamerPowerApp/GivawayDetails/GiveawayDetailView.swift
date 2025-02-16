@@ -56,8 +56,8 @@ struct GiveawayDetailView: View {
                                     await viewModel.toggleFavorite(giveaway.id)
                                 }
                             }) {
-                                Image(systemName: viewModel.Favorites(giveaway.id) ? "heart.fill" : "heart")
-                                    .foregroundColor(viewModel.Favorites(giveaway.id) ? .red : .white)
+                                Image(systemName: viewModel.isFavorites(giveaway.id) ? "heart.fill" : "heart")
+                                    .foregroundColor(viewModel.isFavorites(giveaway.id) ? .red : .white)
                                     .padding(10)
                                     .background(Color.black.opacity(0.6))
                                     .clipShape(Circle())

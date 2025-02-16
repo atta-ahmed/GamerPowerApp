@@ -13,10 +13,10 @@ class GiveawayMasterViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var epicGamesGiveaways: [GiveawayModel] = []
     @Published var searchText: String = ""
-    @Published var selectedPlatform: String? = "all"
+    @Published var selectedPlatform: Platform? = .all
     @Published private(set) var favoriteIDs: Set<String> = []
 
-    var uniquePlatforms: [String] = ["all", "pc", "steam", "ios", "android"]
+    var uniquePlatforms: [Platform] = Platform.allCases
     private let favoriteManager = FavoriteManager.shared
     private let repository: GiveawayRepositoryProtocol
 
@@ -29,18 +29,11 @@ class GiveawayMasterViewModel: ObservableObject {
          }
      }
 
-    func fetchGiveaways(platform: String? = nil) {
+    func fetchGiveaways(platform: Platform = .all) {
         let repository = self.repository
         Task {
             do {
-                var encodedPlatform: String?
-                if platform == "all" {
-                    encodedPlatform = nil
-                } else {
-                    encodedPlatform = platform?.replacingOccurrences(of: " ", with: "-")
-                }
-
-                let data = try await repository.fetchGiveaways(platform: encodedPlatform)
+                let data = try await repository.fetchGiveaways(platform: platform)
                 await updateGiveaways(data)
             } catch {
                 await updateError(error.localizedDescription)
@@ -71,10 +64,8 @@ class GiveawayMasterViewModel: ObservableObject {
         }
     }
     
-    func selectPlatform(_ platform: String) {
-        if selectedPlatform == platform {
-            selectedPlatform = nil // Deselect if already selected
-        } else {
+    func selectPlatform(_ platform: Platform) {
+        if selectedPlatform != platform {
             selectedPlatform = platform
         }
     }
@@ -84,7 +75,7 @@ class GiveawayMasterViewModel: ObservableObject {
          favoriteIDs = await favoriteManager.getFavoriteIDs()
      }
      
-     func Favorites(_ id: Int) -> Bool {
+     func isFavorites(_ id: Int) -> Bool {
          return favoriteIDs.contains("\(id)")
      }
      
