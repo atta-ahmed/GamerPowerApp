@@ -1,9 +1,9 @@
 target 'GamerPowerApp' do
   use_frameworks!
 
-  pod 'Alamofire'
-  pod 'Moya'
-  pod 'Kingfisher'
+  pod 'Alamofire', '5.10.2'
+  pod 'Moya', '~> 15.0'
+  pod 'Kingfisher', '8.2.0'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
