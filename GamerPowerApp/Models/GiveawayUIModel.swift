@@ -31,7 +31,7 @@ struct GiveawayUIModel: Identifiable {
         self.platforms = model.platforms
         self.openGiveawayURL = model.openGiveawayURL
         self.users = model.users
-        self.formattedEndDate = model.publishedDate?.toFormattedDate()
+        self.formattedEndDate = model.endDate?.toFormattedDate()
         self.platformArray = model.platforms?.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
     }
 }

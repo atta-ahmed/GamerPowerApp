@@ -72,14 +72,32 @@ class GiveawayMasterViewModelTests: XCTestCase {
             XCTAssertEqual(viewModel.errorMessage, "Network error")
         }
     }
+    
+    @MainActor func testGiveawaysMapping() {
+        // Given
+        let mockData: [GiveawayModel] = [
+            GiveawayModel(id: 1, title: "Free Game 1", platforms: "android", endDate: "2025-02-13 14:47:55"),
+            GiveawayModel(id: 2, title: "Epic Game 2", platforms: "pc, android")
+        ]
+        
+        viewModel.giveaways = mockData.map { GiveawayUIModel(from: $0) }
+        
+        XCTAssertEqual(viewModel.giveaways.first?.formattedEndDate, "2025-02-13")
+        
+        let groupedGivawys = viewModel.groupGiveawaysByPlatform()
+        
+        XCTAssertEqual(groupedGivawys["android"]?.count, 2)
+    }
 
     @MainActor func testFilteredGiveawaysWhenSearchTextMatches() {
         // Given
-        viewModel.giveaways = [
-            GiveawayModel(id: 1, title: "Free Game 1"),
-            GiveawayModel(id: 2, title: "Epic Game 2"),
-            GiveawayModel(id: 3, title: "Other Game")
+        let mockData: [GiveawayModel] = [
+            GiveawayModel(id: 1, title: "Free Game 1", endDate: "2025-02-13 14:47:55"),
+            GiveawayModel(id: 2, title: "Epic Game 2")
         ]
+        
+        viewModel.giveaways = mockData.map { GiveawayUIModel(from: $0) }
+        
         viewModel.searchText = "epic"
 
         // When
@@ -92,10 +110,13 @@ class GiveawayMasterViewModelTests: XCTestCase {
 
     @MainActor func testFilteredGiveawaysWhenSearchTextIsEmpty() {
         // Given
-        viewModel.giveaways = [
+        let mockData: [GiveawayModel] = [
             GiveawayModel(id: 1, title: "Free Game 1"),
             GiveawayModel(id: 2, title: "Epic Game 2")
         ]
+        
+        viewModel.giveaways = mockData.map { GiveawayUIModel(from: $0) }
+        
         viewModel.searchText = ""
 
         // When
