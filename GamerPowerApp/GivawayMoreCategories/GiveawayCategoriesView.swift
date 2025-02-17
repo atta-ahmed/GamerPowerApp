@@ -10,8 +10,9 @@ import SwiftUI
 import Kingfisher
 
 struct GiveawayCategoriesView: View {
-    let groupedGiveaways: [String: [GiveawayModel]]
-    let topGiveaways: [GiveawayModel]
+    let groupedGiveaways: [String: [GiveawayUIModel]]
+    let topGiveaways: [GiveawayUIModel]
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 20) {

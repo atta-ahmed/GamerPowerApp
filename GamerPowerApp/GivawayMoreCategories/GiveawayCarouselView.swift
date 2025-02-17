@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct GiveawayCarouselView: View {
-    let topGiveaways: [GiveawayModel]
+    let topGiveaways: [GiveawayUIModel]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

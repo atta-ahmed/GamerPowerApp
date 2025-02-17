@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct CardView: View {
-    let giveaway: GiveawayModel
+    let giveaway: GiveawayUIModel
 
     var body: some View {
         ZStack {

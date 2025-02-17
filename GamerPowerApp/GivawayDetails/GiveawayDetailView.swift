@@ -10,9 +10,10 @@ import SwiftUI
 import Kingfisher
 
 struct GiveawayDetailView: View {
-    let giveaway: GiveawayModel
+    let giveaway: GiveawayUIModel
     @ObservedObject var viewModel: GiveawayMasterViewModel
-    @Environment(\.presentationMode) var presentationMode  // To handle back button
+    // To handle back button
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ScrollView {
@@ -34,7 +35,7 @@ struct GiveawayDetailView: View {
                         )
 
                     VStack {
-                        // **Top Controls (Back & Favorite)**
+                        // Top Controls (Back & Favorite)
                         HStack {
                             // Back Button
                             Button(action: {
@@ -51,12 +52,10 @@ struct GiveawayDetailView: View {
 
                             // Favorite Button
                             Button(action: {
-                                Task {
-                                    await viewModel.toggleFavorite(giveaway.id)
-                                }
+                                    viewModel.toggleFavorite(giveaway.id)
                             }) {
-                                Image(systemName: viewModel.isFavorites(giveaway.id) ? "heart.fill" : "heart")
-                                    .foregroundColor(viewModel.isFavorites(giveaway.id) ? .red : .white)
+                                Image(systemName: viewModel.isFavorite(giveaway.id) ? "heart.fill" : "heart")
+                                    .foregroundColor(viewModel.isFavorite(giveaway.id) ? .red : .white)
                                     .padding(10)
                                     .background(Color.black.opacity(0.6))
                                     .clipShape(Circle())
@@ -64,9 +63,9 @@ struct GiveawayDetailView: View {
                         }
                         .padding()
                         
-                        Spacer() // This pushes the bottom section down
+                        Spacer()
 
-                        // **Bottom Section (Title & "Get it" Button)**
+                        // Bottom Section (Title & "Get it" Button)**
                         HStack {
                             Text(giveaway.title)
                                 .font(.title2)
@@ -118,7 +117,7 @@ struct GiveawayDetailView: View {
                     
                     Text("Giveaway End Date")
                         .font(.headline)
-                    Text(giveaway.endDate ?? "Unknown")
+                    Text(giveaway.formattedEndDate ?? "Unknown")
                         .font(.subheadline)
                     
                     Text("Description")
@@ -130,6 +129,7 @@ struct GiveawayDetailView: View {
         }
         .padding(30)
 
-        .navigationBarHidden(true) // Hide default navigation bar
+        // Hide default navigation bar
+        .navigationBarHidden(true)
     }
 }

@@ -10,7 +10,7 @@ import Kingfisher
 
 // Giveaway Item Card
 struct GiveawayCardView: View {
-    let giveaway: GiveawayModel
+    let giveaway: GiveawayUIModel
     @ObservedObject var viewModel: GiveawayMasterViewModel
 
     var body: some View {
@@ -37,12 +37,10 @@ struct GiveawayCardView: View {
                     Spacer()
                     
                       Button(action: {
-                          Task {
-                                 await viewModel.toggleFavorite(giveaway.id)
-                             }
+                                viewModel.toggleFavorite(giveaway.id)
                       }) {
-                          Image(systemName: viewModel.isFavorites(giveaway.id) ? "heart.fill" : "heart")
-                              .foregroundColor(viewModel.isFavorites(giveaway.id) ? .red : .white)
+                          Image(systemName: viewModel.isFavorite(giveaway.id) ? "heart.fill" : "heart")
+                              .foregroundColor(viewModel.isFavorite(giveaway.id) ? .red : .white)
                               .padding(10)
                               .background(Color.black.opacity(0.6))
                               .clipShape(Circle())

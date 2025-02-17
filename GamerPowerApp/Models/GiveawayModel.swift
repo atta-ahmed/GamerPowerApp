@@ -37,9 +37,7 @@ struct GiveawayModel: Codable, Identifiable {
     let status: String?
     let gamerpowerURL: String?
     let openGiveaway: String?
-    var platformArray: [String]? {
-        platforms?.components(separatedBy: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
-    }
+    var platformArray: [String]?
     
     enum CodingKeys: String, CodingKey {
         case id, title, worth, thumbnail, image, description, instructions, type, platforms, users, status
@@ -69,4 +67,3 @@ struct GiveawayModel: Codable, Identifiable {
         self.openGiveaway = openGiveaway
     }
 }
-

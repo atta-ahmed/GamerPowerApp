@@ -31,7 +31,8 @@ struct GiveawayMasterView: View {
                 .padding()
             }
             .onAppear {
-                viewModel.fetchGiveaways()
+                viewModel.fetchGiveawaysIfNeeded()
+                viewModel.loadFavorites()
             }
         }
     }
@@ -50,9 +51,9 @@ struct GiveawayMasterView: View {
     private var searchBarView: some View {
         TextField("Search Game by name", text: $viewModel.searchText)
             .padding(8)
-            .background(Color.gray.opacity(0.2)) // Light gray background
-            .cornerRadius(8) // Rounded corners
-            .foregroundColor(.primary) // Ensure text is visible on gray background
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(8)
+            .foregroundColor(.primary)
             
             .overlay(
                 HStack {
