@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2399C5D6B986B0EE96A112CA /* Pods_GamerPowerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57805019CAAE7CCD1D9C08C3 /* Pods_GamerPowerApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		864A3DF02D5BE24600DBEAFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 864A3DD72D5BE24100DBEAFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 864A3DDE2D5BE24100DBEAFD;
+			remoteInfo = GamerPowerApp;
+		};
+		864A3DFA2D5BE24600DBEAFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 864A3DD72D5BE24100DBEAFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 864A3DDE2D5BE24100DBEAFD;
+			remoteInfo = GamerPowerApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		25FC4ADDE14C35367268F95B /* Pods-GamerPowerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GamerPowerApp.release.xcconfig"; path = "Target Support Files/Pods-GamerPowerApp/Pods-GamerPowerApp.release.xcconfig"; sourceTree = "<group>"; };
+		57805019CAAE7CCD1D9C08C3 /* Pods_GamerPowerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GamerPowerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		864A3DDF2D5BE24100DBEAFD /* GamerPowerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamerPowerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		864A3DEF2D5BE24600DBEAFD /* GamerPowerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GamerPowerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		864A3DF92D5BE24600DBEAFD /* GamerPowerAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GamerPowerAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		998863752E9970A213C2170D /* Pods-GamerPowerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GamerPowerApp.debug.xcconfig"; path = "Target Support Files/Pods-GamerPowerApp/Pods-GamerPowerApp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		864A3DF22D5BE24600DBEAFD /* GamerPowerAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = GamerPowerAppTests;
+			sourceTree = "<group>";
+		};
+		864A3DFC2D5BE24600DBEAFD /* GamerPowerAppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = GamerPowerAppUITests;
+			sourceTree = "<group>";
+		};
+		86B78A672D5FC68F0069BAEB /* GamerPowerApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = GamerPowerApp;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		864A3DDC2D5BE24100DBEAFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2399C5D6B986B0EE96A112CA /* Pods_GamerPowerApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DEC2D5BE24600DBEAFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DF62D5BE24600DBEAFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05126BDAAB6231E268CEE3C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57805019CAAE7CCD1D9C08C3 /* Pods_GamerPowerApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5456A2D0B79F47FB03EBBBE5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				998863752E9970A213C2170D /* Pods-GamerPowerApp.debug.xcconfig */,
+				25FC4ADDE14C35367268F95B /* Pods-GamerPowerApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		864A3DD62D5BE24100DBEAFD = {
+			isa = PBXGroup;
+			children = (
+				86B78A672D5FC68F0069BAEB /* GamerPowerApp */,
+				864A3DF22D5BE24600DBEAFD /* GamerPowerAppTests */,
+				864A3DFC2D5BE24600DBEAFD /* GamerPowerAppUITests */,
+				864A3DE02D5BE24100DBEAFD /* Products */,
+				5456A2D0B79F47FB03EBBBE5 /* Pods */,
+				05126BDAAB6231E268CEE3C4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		864A3DE02D5BE24100DBEAFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				864A3DDF2D5BE24100DBEAFD /* GamerPowerApp.app */,
+				864A3DEF2D5BE24600DBEAFD /* GamerPowerAppTests.xctest */,
+				864A3DF92D5BE24600DBEAFD /* GamerPowerAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		864A3DDE2D5BE24100DBEAFD /* GamerPowerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 864A3E032D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerApp" */;
+			buildPhases = (
+				1B1C7D739A6EB69D4CE9FD4E /* [CP] Check Pods Manifest.lock */,
+				864A3DDB2D5BE24100DBEAFD /* Sources */,
+				864A3DDC2D5BE24100DBEAFD /* Frameworks */,
+				864A3DDD2D5BE24100DBEAFD /* Resources */,
+				3CC6B09C3CCB1D61F1A434D4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				86B78A672D5FC68F0069BAEB /* GamerPowerApp */,
+			);
+			name = GamerPowerApp;
+			productName = GamerPowerApp;
+			productReference = 864A3DDF2D5BE24100DBEAFD /* GamerPowerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		864A3DEE2D5BE24600DBEAFD /* GamerPowerAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 864A3E062D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerAppTests" */;
+			buildPhases = (
+				864A3DEB2D5BE24600DBEAFD /* Sources */,
+				864A3DEC2D5BE24600DBEAFD /* Frameworks */,
+				864A3DED2D5BE24600DBEAFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				864A3DF12D5BE24600DBEAFD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				864A3DF22D5BE24600DBEAFD /* GamerPowerAppTests */,
+			);
+			name = GamerPowerAppTests;
+			productName = GamerPowerAppTests;
+			productReference = 864A3DEF2D5BE24600DBEAFD /* GamerPowerAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		864A3DF82D5BE24600DBEAFD /* GamerPowerAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 864A3E092D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerAppUITests" */;
+			buildPhases = (
+				864A3DF52D5BE24600DBEAFD /* Sources */,
+				864A3DF62D5BE24600DBEAFD /* Frameworks */,
+				864A3DF72D5BE24600DBEAFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				864A3DFB2D5BE24600DBEAFD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				864A3DFC2D5BE24600DBEAFD /* GamerPowerAppUITests */,
+			);
+			name = GamerPowerAppUITests;
+			productName = GamerPowerAppUITests;
+			productReference = 864A3DF92D5BE24600DBEAFD /* GamerPowerAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		864A3DD72D5BE24100DBEAFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					864A3DDE2D5BE24100DBEAFD = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					864A3DEE2D5BE24600DBEAFD = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 864A3DDE2D5BE24100DBEAFD;
+					};
+					864A3DF82D5BE24600DBEAFD = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 864A3DDE2D5BE24100DBEAFD;
+					};
+				};
+			};
+			buildConfigurationList = 864A3DDA2D5BE24100DBEAFD /* Build configuration list for PBXProject "GamerPowerApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 864A3DD62D5BE24100DBEAFD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 864A3DE02D5BE24100DBEAFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				864A3DDE2D5BE24100DBEAFD /* GamerPowerApp */,
+				864A3DEE2D5BE24600DBEAFD /* GamerPowerAppTests */,
+				864A3DF82D5BE24600DBEAFD /* GamerPowerAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		864A3DDD2D5BE24100DBEAFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DED2D5BE24600DBEAFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DF72D5BE24600DBEAFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B1C7D739A6EB69D4CE9FD4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GamerPowerApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CC6B09C3CCB1D61F1A434D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GamerPowerApp/Pods-GamerPowerApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GamerPowerApp/Pods-GamerPowerApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GamerPowerApp/Pods-GamerPowerApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		864A3DDB2D5BE24100DBEAFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DEB2D5BE24600DBEAFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864A3DF52D5BE24600DBEAFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		864A3DF12D5BE24600DBEAFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 864A3DDE2D5BE24100DBEAFD /* GamerPowerApp */;
+			targetProxy = 864A3DF02D5BE24600DBEAFD /* PBXContainerItemProxy */;
+		};
+		864A3DFB2D5BE24600DBEAFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 864A3DDE2D5BE24100DBEAFD /* GamerPowerApp */;
+			targetProxy = 864A3DFA2D5BE24600DBEAFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		864A3E012D5BE24600DBEAFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		864A3E022D5BE24600DBEAFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		864A3E042D5BE24600DBEAFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 998863752E9970A213C2170D /* Pods-GamerPowerApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GamerPowerApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		864A3E052D5BE24600DBEAFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25FC4ADDE14C35367268F95B /* Pods-GamerPowerApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GamerPowerApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		864A3E072D5BE24600DBEAFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GamerPowerApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GamerPowerApp";
+			};
+			name = Debug;
+		};
+		864A3E082D5BE24600DBEAFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GamerPowerApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GamerPowerApp";
+			};
+			name = Release;
+		};
+		864A3E0A2D5BE24600DBEAFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GamerPowerApp;
+			};
+			name = Debug;
+		};
+		864A3E0B2D5BE24600DBEAFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atta.GamerPowerAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GamerPowerApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		864A3DDA2D5BE24100DBEAFD /* Build configuration list for PBXProject "GamerPowerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				864A3E012D5BE24600DBEAFD /* Debug */,
+				864A3E022D5BE24600DBEAFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		864A3E032D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				864A3E042D5BE24600DBEAFD /* Debug */,
+				864A3E052D5BE24600DBEAFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		864A3E062D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				864A3E072D5BE24600DBEAFD /* Debug */,
+				864A3E082D5BE24600DBEAFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		864A3E092D5BE24600DBEAFD /* Build configuration list for PBXNativeTarget "GamerPowerAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				864A3E0A2D5BE24600DBEAFD /* Debug */,
+				864A3E0B2D5BE24600DBEAFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 864A3DD72D5BE24100DBEAFD /* Project object */;
+}
