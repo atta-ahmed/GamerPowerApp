@@ -1,0 +1,6 @@
+framework module Pods_GamerPowerApp {
+  umbrella header "Pods-GamerPowerApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
